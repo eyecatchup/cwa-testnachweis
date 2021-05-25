@@ -90,7 +90,7 @@
                 </v-card-title>
 
                 <v-card-subtitle>
-                  Keine Zeit gehabt zum Testzentrum zu gehen? Kein Problem! Benutzen Sie einfach diesen schlechten Web-Klon der offiziellen deutschen Corona Warn App, um jederzeit ein aktuelles, negatives Testergebnis vorlegen zu können. Den Unterschied merkt eh keiner.
+                  Keine Zeit gehabt, zum Testzentrum zu gehen? Kein Problem! Benutzen Sie einfach diesen schlechten Web-Klon der offiziellen deutschen Corona Warn App, um jederzeit ein aktuelles, negatives Testergebnis vorlegen zu können. Den Unterschied merkt eh keiner.
                 </v-card-subtitle>
 
               </div>
@@ -101,20 +101,84 @@
               color="btn_primary"
               class="my-botton mb-4"
               dark
-              @click="goToGithub()"
-            >SOURCE CODE</v-btn>
+              @click="settingsDialog = true"
+            >ERGEBNIS PERSONALISIEREN</v-btn>
 
-            <!-- <v-btn
+            <v-btn
               elevation="0"
               color="btn_primary"
               class="my-botton mb-4"
               dark
-              @click="openSettingsModal()"
-            >ERGEBNIS PERSONALISIEREN</v-btn> -->
+              @click="goToGithub()"
+            >SOURCE CODE</v-btn>
           </v-card>
         </v-col>
 
       </v-row>
+
+      <v-dialog
+        v-model="settingsDialog"
+        persistent
+        max-width="600px"
+      >
+
+        <v-card>
+          <v-card-title>
+            <span class="headline">Persönliche Daten</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                  <v-text-field
+                    label="Vor- und Nachname*"
+                    hint="Zum Beispiel: Max Mustermann"
+                    persistent-hint
+                    required
+                    v-model="nameInput"
+                  ></v-text-field>
+                </v-col>
+  
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                  <v-text-field
+                    label="Geburtsdatum*"
+                    hint="Format: 01.10.1967"
+                    persistent-hint
+                    required
+                    v-model="bornInput"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+            <small>*Pflichtfelder, wird nur lokal gespeichert</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="settingsDialog = false"
+            >
+              Abbrechen
+            </v-btn>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="saveSettingsDialog()"
+            >
+              Speichern
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-container>
 
     <div 
@@ -144,7 +208,9 @@
                   <span class="text-h5">SARS-CoV-2</span> 
                   <span class="text-h6 mb-4 clr-negative">Negativ</span> 
 
-                  <!-- <span class="pb-2"><b>Stephan Schmitz</b>, geb. 11.04.1985</span> -->
+                  <div v-if="hasName">
+                    <span class="pb-2"><b>{{ name }}</b>, geb. {{ born }}</span>
+                  </div>
 
                   <span class="">Das Virus SARS-CoV-2 wurde bei Ihnen nicht nachgewiesen.</span> <br>
 
@@ -183,7 +249,6 @@
               dark
             >TEST ENTFERNEN</v-btn>
           </v-col>
-
         </v-row>
       </v-container>
     </div>
@@ -197,7 +262,10 @@
     data () {
       return {
         resultOverlayOpen: false,
-        currentSeconds: 0
+        settingsDialog: false,
+        currentSeconds: 0,
+        bornInput: '',
+        nameInput: ''
       }
     },
 
@@ -226,6 +294,24 @@
         const dateStart = this.$date((dateStr + ' 01:32:00'))
         const dateNow = this.$date((dateStr + ' ' + timeStr))
         return ('' + (dateStart.diff(dateNow, 'hours') * -1)).padStart(2, '0')
+      },
+      hasName () {
+        try {
+          const name = localStorage.getItem('nameInput')
+          if (name && name.length) {
+            return true
+          } 
+
+          return false
+        } catch (err) {
+          return false
+        }
+      },
+      name () {
+        return this.nameInput
+      },
+      born () {
+        return this.bornInput
       }
     },
 
@@ -236,8 +322,12 @@
       goToGithub () {
         location.href = 'https://github.com/eyecatchup/cwa-testnachweis'
       },
-      openSettingsModal () {
-        
+      saveSettingsDialog () {
+        if (this.bornInput.length && this.nameInput.length) {
+          localStorage.setItem('bornInput', this.bornInput)
+          localStorage.setItem('nameInput', this.nameInput)
+        }
+        this.settingsDialog = false
       }
     },
 
@@ -249,6 +339,11 @@
           this.currentSeconds++
         }
       }, 1000)
+
+      if (this.hasName) {
+        this.bornInput = localStorage.getItem('bornInput')
+        this.nameInput = localStorage.getItem('nameInput')
+      }
     }
   }
 </script>
@@ -312,6 +407,10 @@ ul.risk {
       margin-bottom: 12px;
     }
   }
+}
+
+.v-btn:not(.v-btn--round).v-size--default {
+    min-height: 40px;
 }
 
 .befund {

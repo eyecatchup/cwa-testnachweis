@@ -35,6 +35,26 @@
     <v-main>
       <HelloWorld/>
     </v-main>
+
+    <!-- <v-bottom-navigation v-model="value">
+      <v-btn value="recent">
+        <span>Startseite</span>
+  
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+  
+      <v-btn value="favorites">
+        <span>Check-In</span>
+  
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+  
+      <v-btn value="nearby">
+        <span>Tagebuch</span>
+  
+        <v-icon>mdi-map-marker</v-icon>
+      </v-btn>
+    </v-bottom-navigation> -->
   </v-app>
 </template>
 
@@ -49,12 +69,15 @@ export default {
   },
 
   data: () => ({
-    //
+    value: 'recent'
   }),
 };
 </script>
 
 <style scoped lang="scss">
+.v-bottom-navigation {
+  position: fixed;
+}
 .app-bar-title {
   color: rgba(0, 0, 0, 0.87);
 
