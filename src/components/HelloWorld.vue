@@ -7,12 +7,14 @@
             color="cwa_low_risk"
             dark
           >
-            <v-card-title class="text-h5 mb-4">
+            <v-card-title class="text-h5 mb-5 pt-5">
               Niedriges Risiko
+
+              <v-icon dark style="position:absolute; right: 16px;">mdi-arrow-right</v-icon>
             </v-card-title>
 
             <v-card-subtitle>
-              <ul class="risk">
+              <ul class="risk mb-2">
                 <li>Keine Risiko-Begegnungen</li>
                 <li>Aktualisiert: Heute, 06:30</li>
               </ul>
@@ -43,7 +45,7 @@
                 </v-card-subtitle>
               </div>
 
-              <img class="ma-3 card-image elevation-0"  alt="" src="../assets/dark/ic_test_result_illustration_negative.png">
+              <img class="ma-3 card-image elevation-0"  alt="" src="../assets/light/ic_test_result_illustration_negative.png">
             </div>
             
           </v-card>
@@ -65,7 +67,7 @@
 
               </div>
 
-              <img class="ma-3 card-image" alt="" src="../assets/light/ic_main_illustration_warnende_personen.png">
+              <img class="ma-3 card-image" alt="" src="../assets/light/ic_main_illustration_untested.png">
             </div>
 
             <v-btn
@@ -101,6 +103,14 @@
               dark
               @click="goToGithub()"
             >SOURCE CODE</v-btn>
+
+            <!-- <v-btn
+              elevation="0"
+              color="btn_primary"
+              class="my-botton mb-4"
+              dark
+              @click="openSettingsModal()"
+            >ERGEBNIS PERSONALISIEREN</v-btn> -->
           </v-card>
         </v-col>
 
@@ -225,6 +235,9 @@
       },
       goToGithub () {
         location.href = 'https://github.com/eyecatchup/cwa-testnachweis'
+      },
+      openSettingsModal () {
+        
       }
     },
 
@@ -273,8 +286,31 @@
 }
 
 ul.risk {
-  li:not(:last-of-type) {
-    margin-bottom: 5px;
+  list-style-type: none;
+  margin-block-start: 0;
+  padding-inline-start: 16px;
+
+  li {
+    color: #fff;
+    font-size: 15px;
+    background: url('../assets/light/ic_main_about.png') no-repeat left 9px;
+    padding-left: 12px;
+    display: block;
+    background-position: left center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+
+    &:last-of-type {
+      background: url('../assets/light/ic_settings_background_priority_enabled.png') no-repeat left 9px;
+      background-position: left center;
+      background-size: 20px;
+      background-repeat: no-repeat;
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 12px;
+    }
   }
 }
 

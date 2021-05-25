@@ -23,7 +23,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
+      <v-btn x-small icon>
         <v-icon color="contrasttext">mdi-share-variant</v-icon>
       </v-btn>
 
