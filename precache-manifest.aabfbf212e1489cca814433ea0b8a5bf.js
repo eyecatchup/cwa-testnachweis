@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/img/ic_test_result_illustration_negative.aee2dd3b.png"
   },
   {
-    "revision": "868da2c229bcddb77bce",
-    "url": "/cwa-testnachweis/js/app.49c62779.js"
+    "revision": "2de0392e2b78a377991e",
+    "url": "/cwa-testnachweis/js/app.0baf8dd0.js"
   },
   {
     "revision": "0ed81ab70d5e4e9e838a",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/js/about.9f542b9c.js"
   },
   {
-    "revision": "6801e92ee0c2e89ff417a267b4728e78",
+    "revision": "84a40f604b44d93bfd0ab40ad1fdc213",
     "url": "/cwa-testnachweis/index.html"
   },
   {
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/css/chunk-vendors.aa62e350.css"
   },
   {
-    "revision": "868da2c229bcddb77bce",
-    "url": "/cwa-testnachweis/css/app.5a76f5b7.css"
+    "revision": "2de0392e2b78a377991e",
+    "url": "/cwa-testnachweis/css/app.5ca772b6.css"
   }
 ];
