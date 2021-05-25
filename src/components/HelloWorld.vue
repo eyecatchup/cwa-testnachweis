@@ -12,7 +12,7 @@
             </v-card-title>
 
             <v-card-subtitle>
-              <ul>
+              <ul class="risk">
                 <li>Keine Risiko-Begegnungen</li>
                 <li>Aktualisiert: Heute, 06:30</li>
               </ul>
@@ -141,7 +141,7 @@
                   <div class="timer text-center">
                     <div class="counter">
                       <span class="pt-2">Ergebnis liegt vor seit</span>
-                      <span class="mt-1 text-h4 ellapsed-time" style="width: 135px; display: inline-block;">21:07:15</span>
+                      <span class="mt-1 text-h4 ellapsed-time" style="width: 135px; display: inline-block;">{{ getHours }}:{{ getMinutes }}:{{ getSeconds }}</span>
                       <div class="d-flex flex-no-wrap justify-space-between pb-2" style="color: rgba(255, 255, 255, 0.6); width: 135px;margin-left: calc(50% - 67.5px);">
                         <div>Std</div>
                         <div>Min</div>
@@ -187,12 +187,35 @@
     data () {
       return {
         resultOverlayOpen: false,
+        currentSeconds: 0
       }
     },
 
     computed: {
       testDate () {
         return new Date().toLocaleDateString('de-DE', {year: 'numeric', month: '2-digit', day: '2-digit'});
+      },
+      getSeconds () {
+        return ('' + this.currentSeconds).padStart(2, '0')
+      },
+      getMinutes () {
+        const date = this.$date()
+        const dateStr = date.format('YYYY-MM-DD')
+        const timeStr = date.format('HH:mm:ss')
+        const dateStart = this.$date((dateStr + ' 01:32:00'))
+        const dateNow = this.$date((dateStr + ' ' + timeStr))
+        const minutes = dateStart.diff(dateNow, 'minutes') * -1
+        const h = Math.floor(minutes / 60)
+        const rest = minutes - (h * 60)
+        return ('' + rest).padStart(2, '0')
+      },
+      getHours () {
+        const date = this.$date()
+        const dateStr = date.format('YYYY-MM-DD')
+        const timeStr = date.format('HH:mm:ss')
+        const dateStart = this.$date((dateStr + ' 01:32:00'))
+        const dateNow = this.$date((dateStr + ' ' + timeStr))
+        return ('' + (dateStart.diff(dateNow, 'hours') * -1)).padStart(2, '0')
       }
     },
 
@@ -203,6 +226,16 @@
       goToGithub () {
         location.href = 'https://github.com/eyecatchup/cwa-testnachweis'
       }
+    },
+
+    mounted () {
+      setInterval(() => {
+        if (this.currentSeconds === 59) {
+          this.currentSeconds = 0
+        } else {
+          this.currentSeconds++
+        }
+      }, 1000)
     }
   }
 </script>
@@ -215,7 +248,7 @@
   height: 100%;
   min-height: 100vh;
   left: 0;
-  top: 0;
+  top: 1px;
   z-index: 999999;
   background: #fff;
 
@@ -236,6 +269,12 @@
     .counter {
       background: #2E854B;
     }
+  }
+}
+
+ul.risk {
+  li:not(:last-of-type) {
+    margin-bottom: 5px;
   }
 }
 

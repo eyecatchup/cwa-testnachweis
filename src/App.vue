@@ -59,15 +59,15 @@ export default {
   color: rgba(0, 0, 0, 0.87);
 
   span {
-    display: block;
-    letter-spacing: 1px;
+    display: block;   
   }
   .top {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 1px;
   }
   .bottom {
-    font-size: 12px;
+    font-size: 10px;
     line-height: 12px;
   }
 }
