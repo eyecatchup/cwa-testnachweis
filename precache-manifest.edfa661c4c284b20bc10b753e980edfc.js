@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/robots.txt"
   },
   {
-    "revision": "2e5bd4943bd43de913ad",
-    "url": "/cwa-testnachweis/js/chunk-vendors.57236df2.js"
+    "revision": "892859071b51f723c456",
+    "url": "/cwa-testnachweis/js/chunk-vendors.93f477ab.js"
   },
   {
-    "revision": "6569bedc1aa478b047c9",
-    "url": "/cwa-testnachweis/js/app.32ed074d.js"
+    "revision": "968e03a578f273e20e22",
+    "url": "/cwa-testnachweis/js/app.ba838dcb.js"
   },
   {
-    "revision": "287ced8241cb1e102941",
-    "url": "/cwa-testnachweis/js/about.afc9756c.js"
+    "revision": "e62898f6ce4ae39ebebd",
+    "url": "/cwa-testnachweis/js/about.9f542b9c.js"
   },
   {
-    "revision": "c6acb65219ab0545a4a32eb64c678f42",
+    "revision": "2237915c56127f407f284e64778bcb66",
     "url": "/cwa-testnachweis/index.html"
   },
   {
@@ -36,11 +36,11 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/favicon.png"
   },
   {
-    "revision": "2e5bd4943bd43de913ad",
-    "url": "/cwa-testnachweis/css/chunk-vendors.922cb2e0.css"
+    "revision": "892859071b51f723c456",
+    "url": "/cwa-testnachweis/css/chunk-vendors.0126db99.css"
   },
   {
-    "revision": "6569bedc1aa478b047c9",
-    "url": "/cwa-testnachweis/css/app.96f12ada.css"
+    "revision": "968e03a578f273e20e22",
+    "url": "/cwa-testnachweis/css/app.2c61ed3b.css"
   }
 ];
