@@ -327,7 +327,7 @@
           localStorage.setItem('bornInput', this.bornInput)
           localStorage.setItem('nameInput', this.nameInput)
         }
-        this.settingsDialog = false
+        location.reload()
       }
     },
 
