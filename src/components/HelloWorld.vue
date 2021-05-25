@@ -1,59 +1,271 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <v-container>
+      <v-row>
+        <v-col cols="12">
+          <v-card
+            color="cwa_low_risk"
+            dark
+          >
+            <v-card-title class="text-h5 mb-4">
+              Niedriges Risiko
+            </v-card-title>
+
+            <v-card-subtitle>
+              <ul>
+                <li>Keine Risiko-Begegnungen</li>
+                <li>Aktualisiert: Heute, 06:30</li>
+              </ul>
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12">
+          <v-card
+            light
+            @click="toggleResultOverlay()"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between mr-12">
+              <div>
+                <v-card-title class="text-h5 mb-4">
+                  Schnelltest
+                </v-card-title>
+                <v-card-subtitle>
+                  <div class="befund">
+                    <span class="">Befund</span> 
+                    <span class="text-h5">SARS-CoV-2</span> 
+                    <span class="text-h6 mb-4 clr-negative">Negativ</span> 
+
+                    <span class="">Das Virus SARS-CoV-2 wurde bei Ihnen nicht nachgewiesen.</span> <br>
+
+                    <span class="">Durchgeführt am {{ testDate }}</span> 
+                  </div>
+                </v-card-subtitle>
+              </div>
+
+              <img class="ma-3 card-image elevation-0"  alt="" src="../assets/dark/ic_test_result_illustration_negative.png">
+            </div>
+            
+          </v-card>
+        </v-col>
+
+        <v-col cols="12">
+          <v-card
+            light
+          >
+            <div class="d-flex flex-no-wrap justify-space-between mb-1 mr-12">
+              <div>
+                <v-card-title class="text-h5 mb-4">
+                  Test registrieren
+                </v-card-title>
+
+                <v-card-subtitle>
+                  Nutzen Sie die App, um Ihre Testergebnisse abrufen und schneller warnen zu können.
+                </v-card-subtitle>
+
+              </div>
+
+              <img class="ma-3 card-image" alt="" src="../assets/light/ic_main_illustration_warnende_personen.png">
+            </div>
+
+            <v-btn
+              elevation="0"
+              color="btn_primary"
+              class="my-botton mb-4"
+              dark
+            >NÄCHSTE SCHRITTE</v-btn>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12">
+          <v-card
+            light
+          >
+            <div class="d-flex flex-no-wrap justify-space-between mb-1">
+              <div>
+                <v-card-title class="text-h5 mb-4">
+                  Was ist das hier?
+                </v-card-title>
+
+                <v-card-subtitle>
+                  Keine Zeit gehabt zum Testzentrum zu gehen? Kein Problem! Benutzen Sie einfach diesen schlechten Web-Klon der offiziellen deutschen Corona Warn App, um jederzeit ein aktuelles, negatives Testergebnis vorlegen zu können. Den Unterschied merkt eh keiner.
+                </v-card-subtitle>
+
+              </div>
+            </div>
+
+            <v-btn
+              elevation="0"
+              color="btn_primary"
+              class="my-botton mb-4"
+              dark
+              @click="goToGithub()"
+            >SOURCE CODE</v-btn>
+          </v-card>
+        </v-col>
+
+      </v-row>
+    </v-container>
+
+    <div 
+      class="result-overlay"
+      v-if="resultOverlayOpen"
+    >
+      <v-container>
+        <v-row>
+          <v-col cols="12">
+            <v-btn icon @click="toggleResultOverlay()">
+              <v-icon color="contrasttext">mdi-close</v-icon>
+            </v-btn>
+            <h3 class="text-h6">Ihr Testergebnis</h3>
+          </v-col>
+
+          <v-col cols="12">
+
+            <v-card
+              light
+            >
+              <v-card-title class="text-h5 mb-4">
+                Schnelltest
+              </v-card-title>
+              <v-card-subtitle>
+                <div class="befund">
+                  <span class="">Befund</span> 
+                  <span class="text-h5">SARS-CoV-2</span> 
+                  <span class="text-h6 mb-4 clr-negative">Negativ</span> 
+
+                  <!-- <span class="pb-2"><b>Stephan Schmitz</b>, geb. 11.04.1985</span> -->
+
+                  <span class="">Das Virus SARS-CoV-2 wurde bei Ihnen nicht nachgewiesen.</span> <br>
+
+                  <div class="timer text-center">
+                    <div class="counter">
+                      <span class="pt-2">Ergebnis liegt vor seit</span>
+                      <span class="mt-1 text-h4 ellapsed-time" style="width: 135px; display: inline-block;">21:07:15</span>
+                      <div class="d-flex flex-no-wrap justify-space-between pb-2" style="color: rgba(255, 255, 255, 0.6); width: 135px;margin-left: calc(50% - 67.5px);">
+                        <div>Std</div>
+                        <div>Min</div>
+                        <div>Sek</div>
+                      </div>
+                    </div>
+                    <div class="ausgestellt">
+                      <span class="pt-2 pb-2">Ausgestellt: {{ testDate }}, 01:32 Uhr</span>
+                    </div>
+                  </div>
+                </div>
+              </v-card-subtitle>
+            </v-card>
+       
+          </v-col>
+
+          <v-col cols="12">
+
+            <div class="text-h5 pb-2">
+              Nachweis-Funktion
+            </div>
+
+            <p>Sie können den hier angezeigten Befund auch als Nachweis für das Vorliegen eines negativen Schnelltest-Ergebnisses verwenden.</p>
+
+            <v-btn
+              elevation="0"
+              color="btn_primary"
+              class="my-botton full-width mb-4"
+              dark
+            >TEST ENTFERNEN</v-btn>
+          </v-col>
+
+        </v-row>
+      </v-container>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  export default {
+    name: 'HelloWorld',
+
+    data () {
+      return {
+        resultOverlayOpen: false,
+      }
+    },
+
+    computed: {
+      testDate () {
+        return new Date().toLocaleDateString('de-DE', {year: 'numeric', month: '2-digit', day: '2-digit'});
+      }
+    },
+
+    methods: {
+      toggleResultOverlay () {
+        this.resultOverlayOpen = !this.resultOverlayOpen
+      },
+      goToGithub () {
+        location.href = 'https://github.com/eyecatchup/cwa-testnachweis'
+      }
+    }
   }
-}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+.result-overlay {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 999999;
+  background: #fff;
+
+  h3 {
+    display: inline-block;
+    line-height: 36px;
+    font-size: 21px;
+    vertical-align: bottom;
+    margin-left: 16px;
+  }
+
+  .timer {
+    background: #3F3F43;
+    color: #fff;
+    border-radius: 4px !important;
+    overflow: hidden;
+
+    .counter {
+      background: #2E854B;
+    }
+  }
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.befund {
+  span {
+    display: block;
+  }
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.my-botton {
+  width: calc(100% - 32px);
+  margin-left: 16px;
+
+  &.full-width {
+    width: 100%;
+    margin-left: 0;
+  }
 }
-a {
-  color: #42b983;
+
+.card-image {
+  display: block;
+  position: absolute;
+  width: 75px;
+  height: auto;
+  right: 0;
 }
+
+.clr-negative {
+  color: #2E854B
+}
+// .clr-negative {
+//   color: #6ACC8B;
+// }
 </style>
