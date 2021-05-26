@@ -380,7 +380,7 @@
   min-height: 100vh;
   left: 0;
   top: 1px;
-  z-index: 999999;
+  z-index: 9;
   background: #fff;
 
   h3 {
