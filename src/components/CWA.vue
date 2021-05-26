@@ -118,6 +118,7 @@
                 </v-card-title>
 
                 <v-card-subtitle>
+                  <cite><p><b>Update:</b> Nachdem ich aus dem Umfeld der CWA Community <a href="https://github.com/eyecatchup/cwa-testnachweis/issues/1">Feedback zum großen Missbrauchspotential dieser Seite</a> erhalten habe, wurde der "Muster"-Schriftzug ergänzt. Somit sollte klar ersichtlich sein, dass diese Webseite nicht die Original CWA ist. Als "Proof-of-Concept" bleibt die Seite ansonsten vorerst unverändert.</p></cite>
                   <p>Ich will ausdrücklich niemanden dazu ermutigen, diese Seite zu missbrauchen, um sich unrechtmäßig Zutritt zu Angeboten zu verschaffen, bei denen der Zutritt nach der Coronaschutzverordnung an einen Negativtest geknüpft ist.</p>
                   <p>Es soll lediglich <b>anschaulich</b> demonstriert werden, dass die Implementierung der Schnelltestergebnisse in der CWA im aktuellen Stand noch weniger als sicherer Nachweis dienen kann, wie ein Impfausweis aus Papier.</p>
                   <p>Beides ist nicht im Ansatz (fälschungs)sicher!</p>
