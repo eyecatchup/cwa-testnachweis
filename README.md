@@ -8,13 +8,19 @@
 
 ## Disclaimer
 
-Ich will ausdrücklich niemanden ermutigen, [diese Seite](https://eyecatchup.github.io/cwa-testnachweis/) zu missbrauchen, um sich unrechtmäßig Zutritt zu einer Veranstaltung, einer Lokalität oder ähnlichem zu verschaffen!
+Ich will ausdrücklich niemanden dazu ermutigen, [diese Seite](https://eyecatchup.github.io/cwa-testnachweis/) zu missbrauchen, um sich unrechtmäßig Zutritt zu Angeboten zu verschaffen, bei denen der Zutritt nach der Coronaschutzverordnung an einen Negativtest geknüpft ist (z.B. Zutritt zu Veranstaltungen oder Baumarktbesuche in Kommunen mit „Notbremse“ etc.).
 
 Es soll lediglich anschaulich demonstriert werden, dass die Implementierung der Schnelltestergebnisse in der CWA im aktuellen Stand noch weniger als _sicherer_ Nachweis dienen kann, wie ein Impfausweis aus Papier.
 
-Beides ist nicht im Ansatz (fälschungs)sicher! Und in diesem Fall muss nicht einmal ein Arztstempel o.ä. gefälscht werden.
+Beides ist nicht im Ansatz (fälschungs)sicher! 
 
 Wenn ich diese Webseite auf einem Smartphone im Vollbildmodus aufrufe, wird kaum jemand den Unterschied zur echten CWA erkennen (können).
+
+### Rechtslage
+
+Wer Testbescheinigungen, wie sie als Anlage zu der Test- und Quarantäneverordnung veröffentlicht wurden, fälscht, dem droht ein Bußgeld in Höhe von 1.000 Euro und zudem eine Anzeige wegen strafbaren Urkundendelikten.
+
+Durch die Einbindung der Schnelltestergebnisse in die CWA, muss man - platt gesagt - nicht mal mehr ein urkundliches Dokument fälschen, um einen gängig akzeptierten Testnachweis vorzugeben.
 
 ## Copyright-Hinweis
 

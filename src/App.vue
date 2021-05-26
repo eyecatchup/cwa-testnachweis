@@ -8,7 +8,7 @@
     >
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="Corona Warn App Logo"
           class="shrink mr-2"
           contain
           src="https://www.coronawarn.app/assets/img/icons/favicon-192x192.png"
@@ -33,39 +33,39 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <CWA/>
     </v-main>
 
-    <!-- <v-bottom-navigation v-model="value">
+    <v-bottom-navigation v-model="value" class="justify-space-between">
       <v-btn value="recent">
-        <span>Startseite</span>
+        <span style="color:#007FAD;padding-left:16px;padding-right:16px;">Startseite</span>
   
-        <v-icon>mdi-home</v-icon>
+        <v-icon color="#007FAD">mdi-home</v-icon>
       </v-btn>
   
       <v-btn value="favorites">
-        <span>Check-In</span>
+        <span style="color:#999999;padding-left:16px;padding-right:16px;">Check-In</span>
   
-        <v-icon>mdi-heart</v-icon>
+        <v-icon color="#999999">mdi-qrcode</v-icon>
       </v-btn>
   
       <v-btn value="nearby">
-        <span>Tagebuch</span>
+        <span style="color:#999999;padding-left:16px;padding-right:16px;">Tagebuch</span>
   
-        <v-icon>mdi-map-marker</v-icon>
+        <v-icon color="#999999">mdi-book</v-icon>
       </v-btn>
-    </v-bottom-navigation> -->
+    </v-bottom-navigation>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import CWA from './components/CWA';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    CWA,
   },
 
   data: () => ({
