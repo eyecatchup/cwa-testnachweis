@@ -18,4 +18,4 @@ Wenn ich diese Webseite auf einem Smartphone im Vollbildmodus aufrufe, wird kaum
 
 ## Copyright-Hinweis
 
-In diesem Projekt verwendete Grafiken, wurden als Teil der [CWA Android App](https://github.com/corona-warn-app/cwa-app-android) unter der Apache License, Version 2.0 Lizenz veröffentlicht. Das Copyright an diesen Grafiken obliegt _"SAP SE or an SAP affiliate company"_.
+In diesem Projekt verwendete Grafiken wurden als Teil der [CWA Android App](https://github.com/corona-warn-app/cwa-app-android) unter der Apache License, Version 2.0 veröffentlicht. Das Copyright an diesen Grafiken obliegt _"SAP SE or an SAP affiliate company"_.
