@@ -104,6 +104,36 @@
               @click="settingsDialog = true"
             >ERGEBNIS PERSONALISIEREN</v-btn>
 
+            <!-- <v-btn
+              elevation="0"
+              color="btn_primary"
+              class="my-botton mb-4"
+              dark
+              @click="goToGithub()"
+            >SOURCE CODE</v-btn> -->
+          </v-card>
+        </v-col>
+
+        <v-col cols="12">
+          <v-card
+            light
+          >
+            <div class="d-flex flex-no-wrap justify-space-between mb-1">
+              <div>
+                <v-card-title class="text-h5 mb-4">
+                  Disclaimer
+                </v-card-title>
+
+                <v-card-subtitle>
+                  <p>Ich will ausdrücklich niemanden ermutigen, diese Seite zu missbrauchen, um sich unrechtmäßig Zutritt zu einer Veranstaltung, einer Lokalität oder ähnlichem zu verschaffen!</p>
+                  <p>Es soll lediglich anschaulich demonstriert werden, dass die Implementierung der Schnelltestergebnisse in der CWA im aktuellen Stand genauso wenig als sicherer Nachweis dienen kann, wie ein Impfausweis aus Papier.</p>
+                  <p>Beides ist nicht im Ansatz (fälschungs)sicher!</p>
+                  <p>Wenn ich diese Webseite auf einem Smartphone im Vollbildmodus aufrufe, wird kaum jemand den Unterschied zur echten CWA erkennen (können).</p>
+                </v-card-subtitle>
+
+              </div>
+            </div>
+
             <v-btn
               elevation="0"
               color="btn_primary"
