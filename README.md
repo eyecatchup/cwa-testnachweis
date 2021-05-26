@@ -1,24 +1,17 @@
-# cwa-testnachweis
+# CWA Testnachweis
 
-## Project setup
-```
-yarn install
-```
+(Schlechter) Web-Klon der [deutschen Corona Warn App (CWA)](https://www.coronawarn.app/), der jederzeit ein aktuelles, personalisiertes, negatives Schnelltestergebnis anzeigt.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+1. https://eyecatchup.github.io/cwa-testnachweis/ mit dem Smartphone aufrufen
+2. Webseite [zum Startbildschirm hinzufügen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen) 
+3. Button "Ergebnis personalisieren" klicken
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Disclaimer
 
-### Lints and fixes files
-```
-yarn lint
-```
+Ich will ausdrücklich niemanden ermutigen, [diese Seite](https://eyecatchup.github.io/cwa-testnachweis/) zu missbrauchen, um sich unrechtmäßig Zutritt zu einer Veranstaltung, einer Lokalität oder ähnlichem zu verschaffen!
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Es soll lediglich anschaulich demonstriert werden, dass die Implementierung der Schnelltestergebnisse in der CWA im aktuellen Stand noch weniger als _sicherer_ Nachweis dienen kann, wie ein Impfausweis aus Papier.
+
+Beides ist nicht im Ansatz (fälschungs)sicher! Und in diesem Fall muss nicht einmal ein Arztstempel o.ä. gefälscht werden.
+
+Wenn ich diese Webseite auf einem Smartphone im Vollbildmodus aufrufe, wird kaum jemand den Unterschied zur echten CWA erkennen (können).
