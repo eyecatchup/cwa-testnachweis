@@ -12,11 +12,11 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/js/chunk-vendors.94021960.js"
   },
   {
-    "revision": "796bfe2b141ef8700e2d",
-    "url": "/cwa-testnachweis/js/app.e9eb137b.js"
+    "revision": "03c523870ca09bbe8e95",
+    "url": "/cwa-testnachweis/js/app.a97ad53b.js"
   },
   {
-    "revision": "bbd3560148de72e0bd287c21dd303693",
+    "revision": "7171d86c5743eee44603a9ad19e035bd",
     "url": "/cwa-testnachweis/index.html"
   },
   {
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/cwa-testnachweis/css/chunk-vendors.08e26768.css"
   },
   {
-    "revision": "796bfe2b141ef8700e2d",
-    "url": "/cwa-testnachweis/css/app.325a71f3.css"
+    "revision": "03c523870ca09bbe8e95",
+    "url": "/cwa-testnachweis/css/app.7d463e9b.css"
   }
 ];

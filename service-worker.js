@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/cwa-testnachweis/precache-manifest.8ccb6ae2bb0238ca8983733ad1d4091a.js"
+  "/cwa-testnachweis/precache-manifest.8b4c7976145b0541c19276e1197eba6e.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "cwa-testnachweis"});
