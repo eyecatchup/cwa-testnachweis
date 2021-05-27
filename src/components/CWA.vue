@@ -7,10 +7,10 @@
             color="cwa_low_risk"
             dark
           >
-            <v-card-title class="text-h5 mb-5 pt-5">
+            <v-card-title class="text-h5 mb-5 pt-5 risk-header">
               Niedriges Risiko
 
-              <v-icon dark style="position:absolute; right: 16px;">mdi-arrow-right</v-icon>
+              <v-icon dark>mdi-arrow-right</v-icon>
             </v-card-title>
 
             <v-card-subtitle>
@@ -25,7 +25,7 @@
         <v-col cols="12">
           <v-card
             light
-            @click.prevent="toggleResultOverlay()"
+            @click.prevent="resultOverlayOpen = !resultOverlayOpen"
           >
             <div class="d-flex flex-no-wrap justify-space-between mr-12">
               <div>
@@ -36,7 +36,7 @@
                   <div class="befund">
                     <span class="">Befund</span> 
                     <span class="text-h6 text-black">SARS-CoV-2</span> 
-                    <span class="text-h6 mb-4 clr-negative">Negativ</span> 
+                    <span class="text-h6 mb-4 text-cwa-green">Negativ</span> 
 
                     <span class="">Das Virus SARS-CoV-2 wurde bei Ihnen nicht nachgewiesen.</span> <br>
 
@@ -73,7 +73,7 @@
             <v-btn
               elevation="0"
               color="btn_primary"
-              class="my-botton mb-4"
+              class="cwa-button mb-4"
               dark
             >NÄCHSTE SCHRITTE</v-btn>
           </v-card>
@@ -99,7 +99,7 @@
             <v-btn
               elevation="0"
               color="btn_primary"
-              class="my-botton mb-4"
+              class="cwa-button mb-4"
               dark
               @click.prevent="settingsDialogOpen = true"
             >ERGEBNIS PERSONALISIEREN</v-btn>
@@ -131,9 +131,9 @@
             <v-btn
               elevation="0"
               color="btn_primary"
-              class="my-botton mb-4"
+              class="cwa-button mb-4"
               dark
-              @click="goToGithub()"
+              @click="location.href = 'https://github.com/eyecatchup/cwa-testnachweis'"
             >SOURCE CODE</v-btn>
           </v-card>
         </v-col>
@@ -212,7 +212,7 @@
       <v-container>
         <v-row>
           <v-col cols="12">
-            <v-btn icon @click.prevent="toggleResultOverlay()">
+            <v-btn icon @click.prevent="resultOverlayOpen = !resultOverlayOpen">
               <v-icon color="contrasttext">mdi-close</v-icon>
             </v-btn>
             <h3 class="text-h6">Ihr Testergebnis</h3>
@@ -230,10 +230,10 @@
                 <div class="befund">
                   <span class="">Befund</span> 
                   <span class="text-h6 text-black">SARS-CoV-2</span> 
-                  <span class="text-h6 mb-4 clr-negative">Negativ</span> 
+                  <span class="text-h6 mb-4 text-cwa-green">Negativ</span> 
 
                   <div v-if="hasName">
-                    <span class="pb-2"><b>{{ name }}</b>, geb. {{ born }}</span>
+                    <span class="pb-2"><b>{{ nameInput }}</b>, geb. {{ bornInput }}</span>
                   </div>
 
                   <span class="">Das Virus SARS-CoV-2 wurde bei Ihnen nicht nachgewiesen.</span> <br>
@@ -241,8 +241,10 @@
                   <div class="timer text-center">
                     <div class="counter">
                       <span class="pt-2">Ergebnis liegt vor seit</span>
-                      <span class="mt-1 text-h4 ellapsed-time">{{ getHours }}:{{ getMinutes }}:{{ getSeconds }}</span>
-                      <div class="d-flex flex-no-wrap justify-space-between pb-2" style="color: rgba(255, 255, 255, 0.6); width: 135px;margin-left: calc(50% - 67.5px);">
+                      <span class="mt-1 text-h4 elapsed-time">
+                        {{ elapsedTime.h }}:{{ elapsedTime.m }}:{{ elapsedTime.s }}
+                      </span>
+                      <div class="d-flex flex-no-wrap justify-space-between pb-2 units">
                         <div>Std</div>
                         <div>Min</div>
                         <div>Sek</div>
@@ -269,7 +271,7 @@
             <v-btn
               elevation="0"
               color="btn_primary"
-              class="my-botton full-width mb-4"
+              class="cwa-button full-width mb-4"
               dark
             >TEST ENTFERNEN</v-btn>
           </v-col>
@@ -295,57 +297,33 @@
 
     computed: {
       testDate () {
-        return new Date().toLocaleDateString('de-DE', {year: 'numeric', month: '2-digit', day: '2-digit'});
+        return new Date().toLocaleDateString('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' })
       },
-      getSeconds () {
-        return ('' + this.currentSeconds).padStart(2, '0')
-      },
-      getMinutes () {
+      elapsedTime () {
+        const format = (val) => ('' + val).padStart(2, '0')
+
         const date = this.$date()
-        const dateStr = date.format('YYYY-MM-DD')
-        const timeStr = date.format('HH:mm:ss')
-        const dateStart = this.$date((dateStr + ' 01:32:00'))
-        const dateNow = this.$date((dateStr + ' ' + timeStr))
+        const dateStart = this.$date(date.format('YYYY-MM-DD') + ' 01:32:00')
+        const dateNow = this.$date(date.format('YYYY-MM-DD') + ' ' + date.format('HH:mm:ss'))
         const minutes = dateStart.diff(dateNow, 'minutes') * -1
-        const h = Math.floor(minutes / 60)
-        const rest = minutes - (h * 60)
-        return ('' + rest).padStart(2, '0')
-      },
-      getHours () {
-        const date = this.$date()
-        const dateStr = date.format('YYYY-MM-DD')
-        const timeStr = date.format('HH:mm:ss')
-        const dateStart = this.$date((dateStr + ' 01:32:00'))
-        const dateNow = this.$date((dateStr + ' ' + timeStr))
-        return ('' + (dateStart.diff(dateNow, 'hours') * -1)).padStart(2, '0')
+
+        return {
+          h: format(dateStart.diff(dateNow, 'hours') * -1),
+          m: format(minutes - (Math.floor(minutes / 60) * 60)),
+          s: format(this.currentSeconds)
+        }
       },
       hasName () {
         try {
           const name = localStorage.getItem('nameInput')
-          if (name && name.length) {
-            return true
-          } 
-
-          return false
+          return name && name.length ? true : false
         } catch (err) {
           return false
         }
-      },
-      name () {
-        return this.nameInput
-      },
-      born () {
-        return this.bornInput
       }
     },
 
     methods: {
-      toggleResultOverlay () {
-        this.resultOverlayOpen = !this.resultOverlayOpen
-      },
-      goToGithub () {
-        location.href = 'https://github.com/eyecatchup/cwa-testnachweis'
-      },
       saveSettingsDialog () {
         if (this.bornInput.length && this.nameInput.length) {
           localStorage.setItem('bornInput', this.bornInput)
@@ -357,11 +335,7 @@
 
     mounted () {
       setInterval(() => {
-        if (this.currentSeconds === 59) {
-          this.currentSeconds = 0
-        } else {
-          this.currentSeconds++
-        }
+        59 === this.currentSeconds ? this.currentSeconds = 0 : this.currentSeconds++
       }, 1000)
 
       if (this.hasName) {
@@ -373,35 +347,14 @@
 </script>
 
 <style scoped lang="scss">
-.result-overlay {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  left: 0;
-  top: 1px;
-  z-index: 9;
-  background: #fff;
+.v-btn:not(.v-btn--round).v-size--default {
+    min-height: 40px;
+}
 
-  h3 {
-    display: inline-block;
-    line-height: 36px;
-    font-size: 21px;
-    vertical-align: bottom;
-    margin-left: 16px;
-  }
-
-  .timer {
-    background: #fff;
-    color: rgba(0, 0, 0, .87);
-    border-radius: 4px !important;
-    overflow: hidden;
-
-    .counter {
-      color: #fff;
-      background: #2E854B;
-    }
+.risk-header {
+  i {
+    position: absolute; 
+    right: 16px;
   }
 }
 
@@ -434,31 +387,6 @@ ul.risk {
   }
 }
 
-.v-btn:not(.v-btn--round).v-size--default {
-    min-height: 40px;
-}
-
-.befund {
-  span {
-    display: block;
-  }
-}
-.my-botton {
-  width: calc(100% - 32px);
-  margin-left: 16px;
-
-  &.full-width {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
-.ellapsed-time {
-  width: 140px !important; 
-  display: inline-block !important; 
-  font-weight: 600 !important;
-}
-
 .card-image {
   display: block;
   position: absolute;
@@ -469,7 +397,67 @@ ul.risk {
   top: 3px;
 }
 
-.clr-negative {
+.cwa-button {
+  width: calc(100% - 32px);
+  margin-left: 16px;
+
+  &.full-width {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.befund {
+  span {
+    display: block;
+  }
+}
+
+.result-overlay {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  left: 0;
+  top: 1px;
+  z-index: 9;
+  background: #fff;
+
+  h3 {
+    display: inline-block;
+    line-height: 36px;
+    font-size: 21px;
+    vertical-align: bottom;
+    margin-left: 16px;
+  }
+
+  .timer {
+    background: #fff;
+    color: rgba(0, 0, 0, .87);
+    border-radius: 4px !important;
+    overflow: hidden;
+
+    .counter {
+      color: #fff;
+      background: #2E854B;
+
+      .units {
+        color: rgba(255, 255, 255, 0.6); 
+        width: 135px;
+        margin-left: calc(50% - 67.5px);
+      }
+    }
+  }
+}
+
+.elapsed-time {
+  width: 140px !important; 
+  display: inline-block !important; 
+  font-weight: 600 !important;
+}
+
+.text-cwa-green {
   color: #2E854B
 }
 

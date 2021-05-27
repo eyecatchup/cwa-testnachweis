@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
-// import colors from 'vuetify/lib/util/colors'
 
 Vue.use(Vuetify);
 
@@ -36,25 +35,7 @@ const opts = {
                 cwa_high_risk: '#BD1200',
                 cwa_low_risk: '#2E854B',
                 btn_primary: '#007FAD'
-            },
-            dark: {
-                primary: '#2196F3',
-                secondary: '#424242',
-                accent: '#FF4081',
-                error: '#FF5252',
-                info: '#2196F3',
-                success: '#4CAF50',
-                warning: '#FB8C00',
-                toolbar: '#212121',
-                contrasttext: '#fff',
-                cwa_green: '#6ACC8B',
-                cwa_grey: '#B8C8D9',
-                cwa_dark_grey: '#3F3F43',
-                cwa_pink: '#FF919A',
-                cwa_high_risk: '#BD1200',
-                cwa_low_risk: '#6ACC8B',
-                btn_primary: '#007FAD'
-            },
+            }
         },
     }
 }
