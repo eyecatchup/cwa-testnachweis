@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="muster" style="position:fixed;color: rgba(0, 0, 0, .2);z-index: 10;font-size: 5em;font-weight: 800;letter-spacing: .2em;transform: rotate(-45deg) translate(-50%, -50%);top: 33%;left: 50%;">Muster</div>
+    <div class="muster">Muster</div>
     <v-app-bar
       app
       color="toolbar"
@@ -94,5 +94,17 @@ export default {
     font-size: 10px;
     line-height: 12px;
   }
+}
+
+.muster {
+  position: fixed;
+  color: rgba(0, 0, 0, .08);
+  z-index: 10;
+  font-size: 5em;
+  font-weight: 800;
+  letter-spacing: .2em;
+  transform: rotate(-45deg) translate(-50%, -50%);
+  top: 33%;
+  left: 50%;
 }
 </style>
